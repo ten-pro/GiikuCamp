@@ -17,6 +17,41 @@ if (isset($_POST['get_user']) == true) {
 }
 
 
+//login_userの引数がある場合はtrueを返す
+if(isset($_POST['login_user'])==true){
+    $class = new Cal();
+    $data = $class->login_user($_POST['user_name'],$_POST['user_pass']);
+}
+
+
+//create_userの引数がある時の処理
+if(isset($_POST['create_user'])==true){
+    $class = new Cal();
+    $data = $class->insert_user($_POST['name'],$_POST['pass']);
+}
+
+
+//get_nameの引数がある時の処理
+if(isset($_GET['get_name'])==true){
+    $class = new Cal();
+    $data = $class->get_name($_POST['name']);
+}
+
+
+//delete_annivarsaryの引数がある時の処理
+if(isset($_GET['delete_annivarsary'])==true){
+    $class = new Cal();
+    $data = $class->delete_annivarsary($_POST['annivarsary_id']);
+}
+
+
+//insert_annivarsaryの引数がある時の処理
+if(isset($_GET['insert_annivarsary'])==true){
+    $class = new Cal();
+    $data = $class->insert_annivarsary($POST_['annivarsary_day'],$POST_['user_id'],$POST_['$annivarsary_title'],$POST_['annivarsary_detail']);
+}
+
+
 //arrayの中身をJSON形式に変換している
 $json_array = json_encode($data);
 
