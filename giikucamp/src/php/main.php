@@ -46,11 +46,22 @@ if(isset($_GET['delete_annivarsary'])==true){
 
 
 //insert_annivarsaryの引数がある時の処理
-if(isset($_GET['insert_annivarsary'])==true){
+if(isset($_POST['insert_annivarsary'])==true){
     $class = new Cal();
-    $data = $class->insert_annivarsary($POST_['annivarsary_day'],$POST_['user_id'],$POST_['$annivarsary_title'],$POST_['annivarsary_detail']);
+    $data = $class->insert_annivarsary($_POST['annivarsary_day'],$_POST['user_id'],$_POST['annivarsary_title'],$_POST['annivarsary_detail']);
 }
 
+//update_annivarsaryの引数がある時の処理
+if(isset($_POST['update_annivarsary'])==true){
+    $class = new Cal();
+    $data = $class->update_annivarsary($POST_['annivarsary_day'],$POST_['annivarsary_id'],$POST_['$annivarsary_title'],$POST_['annivarsary_detail']);
+}
+
+//annivarsary_listの引数がある時の処理
+if(isset($_POST['get_list'])==true){
+    $class = new Cal();
+    $data = $class->annivarsary_list($_POST['user_id']);
+}
 
 //arrayの中身をJSON形式に変換している
 $json_array = json_encode($data);
