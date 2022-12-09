@@ -1,7 +1,8 @@
 <template>
-  <h1>こんにちは</h1>
+  <div>
+  </div>
 </template>
-<script>
+<script setup>
 
 </script>
 <style scoped>
