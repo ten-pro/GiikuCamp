@@ -75,6 +75,7 @@
     color: white;
     background-color: #F4A3E2;
     border: none;
+    font-size: 28px;
 }
 .createbtn{
     position: absolute;

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <Create />
   </div>
@@ -9,7 +9,7 @@ import Create from "./components/Create.vue"
 
 </script>
 <style scoped>
-</style>
+</style> -->
 
 <!-- <template>
   <div>
@@ -22,7 +22,7 @@ import Home from "./components/Home.vue"
 <style scoped>
 </style> 一番最初のVue-->
 
-<!-- <template>
+<template>
   <div>
     <Post />
   </div>
@@ -33,7 +33,7 @@ import Post from "./components/Post.vue"
 
 </script>
 <style scoped>
-</style>postのVue -->
+</style>
 
 <!-- <template>
   <div>
@@ -46,4 +46,4 @@ import Login from "./components/Login.vue"
 
 </script>
 <style scoped>
-</style>loginのVue -->
+</style>loginのvue -->
