@@ -2,11 +2,13 @@
     <div>
         <Header />
         <div class="sheader">
+            <button class="backbutton" @click="notification">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-left"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
             </svg>
+        </button>
         </div>
         <div class="userspace">
             <div class="username">ユーザー名</div>
@@ -29,8 +31,8 @@
         <div class="times">
             <div class="timetxt">時間</div>
             <!--  -->
-
-            <select class="timese">
+<form action="">
+            <select class="timese" size="1">
                 <option value="--">--</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -57,41 +59,66 @@
                 <option value="22">22</option>
                 <option value="23">23</option>
             </select>
-
+        </form>
             <!--  -->
         </div>
         <div class="checkday">
             <div class="checkn">日程</div>
-
             <div class="checkma">
                 <label for="horns1" class="checkma">
-                    <input type="checkbox" id="horns1">1日前
+                    <input type="checkbox" id="horns1" value="1">1日前
                 </label>
-
                 <label for="horns2" class="checkma">
-                    <input type="checkbox" id="horns2">3日前
+                    <input type="checkbox" id="horns2" value="3">3日前
                 </label>
                 <label for="horns3" class="checkma">
-                    <input type="checkbox" id="horns3">5日前
+                    <input type="checkbox" id="horns3" value="5">5日前
                 </label>
                 <label for="horns4" class="checkma">
-                    <input type="checkbox" id="horns4">7日前
+                    <input type="checkbox" id="horns4" value="7">7日前
                 </label>
             </div>
-
         </div>
+        <LogoutButton />
+        
     </div>
 </template>
 <script setup>
 import Header from "./Header.vue"
+import LogoutButton from "./setting/LogoutButton.vue"
+
+const notification =()=>{
+    Push.create('Hello Vue.js');
+    
+    const today = new Date();
+  const dayOfWeek = today.getDay() ;
+  console.log(today.getFullYear() + "/" +  (today.getMonth() + 1) + "/"+ today.getDate());
+}
+const clickBtn1 =()=> {
+    const arr = [];
+    const chk1 = document.form1.chk1;
+    for (let i = 0; i < chk1.length; i++) {
+      if (chk1[i].checked) {//(chk1[i].checked === true)と同じ
+        arr.push(chk1[i].value);
+      }
+    }
+    document.getElementById("span1").textContent = arr;
+  }
+
 </script>
 <style scoped>
-
+.backbutton{
+    background-color: transparent;
+    border: none;
+    
+}
 .bi {
     color: #E27A93;
+    cursor:pointer;
 }
 .sheader{
 padding:20px 0px 20px 40px;
+
 }
 .username{
     font-family: sans-serif;
@@ -103,6 +130,7 @@ padding:20px 0px 20px 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-top:40px;
 }
 .namebox{
     background-color: #D9D9D9;
@@ -144,8 +172,8 @@ position:absolute;
 background-color:transparent;
     width:350px;
     height:250px;
-    left:30px;
-    top:300px;
+    left:20px;
+    top:340px;
     border-radius: 20px;
 
     border-left:1px solid #E27A93;
