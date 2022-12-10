@@ -1,14 +1,12 @@
 <!-- <template>
   <div>
-    <Create />
+    <router-view />
   </div>
 </template>
 <script setup>
-import Create from "./components/Create.vue"
-
-
 </script>
 <style scoped>
+
 </style> -->
 
 <!-- <template>
@@ -47,3 +45,4 @@ import Login from "./components/Login.vue"
 </script>
 <style scoped>
 </style>loginのvue -->
+
