@@ -12,7 +12,13 @@ const app = new Vue({
             list: {},
             annivarsary_day: '',
             annivarsary_title: '',
-            annivarsary_detail: ''
+            annivarsary_detail: '',
+            user_name: '',
+            alert: 0,
+            alert_time: '',
+            alert_date: '',
+            new_name: '',
+            new_pass: '',
         }
     },
     //ページが読み込まれた時に動く処理
@@ -40,6 +46,15 @@ const app = new Vue({
         },
         loginpush() {
             this.login();
+            setTimeout(this.reload,2000);
+        },
+        create_user_push(){
+            this.create_user();
+            setTimeout(this.reload,2000);
+        },
+        update_user_push(){
+            this.update_user();
+            setTimeout(this.reload,2000);
         },
         login() {
             axios
@@ -77,8 +92,8 @@ const app = new Vue({
                 .post('https://mp-class.chips.jp/calendar/main.php', {
                     annivarsary_day: this.annivarsary_day,
                     user_id: this.user_id,
-                    annivarsary_title:this.annivarsary_title,
-                    annivarsary_detail:this.annivarsary_detail,
+                    annivarsary_title: this.annivarsary_title,
+                    annivarsary_detail: this.annivarsary_detail,
                     insert_annivarsary: ''
                 }, {
                     headers: {
@@ -93,8 +108,59 @@ const app = new Vue({
         reload() {
             location.href = "./test_annivarsary.html";
         },
-        create() {
+        push_create() {
             this.create_annivarsary();
+            setTimeout(this.reload,2000);
+        },
+        update_user() {
+            axios
+                .post('https://mp-class.chips.jp/calendar/main.php', {
+                    user_id: this.user_id,
+                    user_name: this.user_name,
+                    alert: this.alert,
+                    alert_time: this.alert_time,
+                    alert_date: this.alert_date,
+                    update_user: ''
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    // (response) => (this.loginchk = response.data),
+                    (response) => (console.log(response.data))
+                )
+        },
+        delete_annivarsary(annivarsary_id) {
+            axios
+                .post('https://mp-class.chips.jp/calendar/main.php', {
+                    annivarsary_id: annivarsary_id,
+                    delete_annivarsary: ''
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    // (response) => (this.loginchk = response.data),
+                    (response) => (console.log(response.data))
+                )
+        },
+        create_user() {
+            axios
+                .post('https://mp-class.chips.jp/calendar/main.php', {
+                    name: this.new_name,
+                    pass: this.new_pass,
+                    create_user: ''
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    // (response) => (this.loginchk = response.data),
+                    (response) => (console.log(response.data))
+                )
         }
     },
     watch: {

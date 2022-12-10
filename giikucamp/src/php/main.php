@@ -31,6 +31,13 @@ if(isset($_POST['create_user'])==true){
 }
 
 
+//update_userの引数がある時の処理
+if(isset($_POST['update_user'])==true){
+    $class = new Cal();
+    $data = $class->update_user($_POST['user_id'],$_POST['user_name'],$_POST['alert'],$_POST['alert_time'],$_POST['alert_date']);
+}
+
+
 //get_nameの引数がある時の処理
 if(isset($_GET['get_name'])==true){
     $class = new Cal();
@@ -39,7 +46,7 @@ if(isset($_GET['get_name'])==true){
 
 
 //delete_annivarsaryの引数がある時の処理
-if(isset($_GET['delete_annivarsary'])==true){
+if(isset($_POST['delete_annivarsary'])==true){
     $class = new Cal();
     $data = $class->delete_annivarsary($_POST['annivarsary_id']);
 }
@@ -54,7 +61,7 @@ if(isset($_POST['insert_annivarsary'])==true){
 //update_annivarsaryの引数がある時の処理
 if(isset($_POST['update_annivarsary'])==true){
     $class = new Cal();
-    $data = $class->update_annivarsary($POST_['annivarsary_day'],$POST_['annivarsary_id'],$POST_['$annivarsary_title'],$POST_['annivarsary_detail']);
+    $data = $class->update_annivarsary($_POST['annivarsary_day'],$_POST['annivarsary_id'],$_POST['$annivarsary_title'],$_POST['annivarsary_detail']);
 }
 
 //annivarsary_listの引数がある時の処理
