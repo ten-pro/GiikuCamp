@@ -15,7 +15,7 @@
                 <p class="error2">＊ユーザー名が登録されていません</p>
                 <button class="createbtn2">Create new</button>
         </form>
-        <button class="logbtn2">login</button>
+        <a href="/"><button class="logbtn2">login</button></a>
     </div>
 </template>
 <style>

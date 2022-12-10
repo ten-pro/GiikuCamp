@@ -1,20 +1,45 @@
 <template>
     <div class="back">
         <img src="../IMG/back.png" alt="" class="backimg">
-        <form action="">
-                
-                    <div class="mozi1">name</div>
-                    <input type="text" class="login_input"><br>
-            
-                    <div class="mozi2">pass</div>
-                    <input type="pass" class="login_pass">
 
-                <p class="error1">＊ユーザー名が登録されていません</p>
-                <button class="logbtn">login</button>
-        </form>
-        <button class="createbtn">create new</button>
+        <div class="mozi1">name</div>
+        <input type="text" class="login_input" v-model="name"><br>
+
+        <div class="mozi2">pass</div>
+        <input type="pass" class="login_pass" v-model="pass">
+
+        <p class="error1" :class="{'check':check}">＊ユーザー名が登録されていません</p>
+        <button class="logbtn" @click="login">login</button>
+        <a href="/create"><button class="createbtn">create new</button></a>
     </div>
 </template>
+<script setup>
+import axios from 'axios'
+import { reactive } from "vue"
+let name=reactive("");
+let pass=reactive("");
+let check=reactive(true);
+const login=()=>{
+    axios
+        .post('https://mp-class.chips.jp/calendar/main.php', {
+            user_name: name,
+            user_pass: pass,
+            login_user: ''
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (res) {
+            console.log(res.data);
+            if(res.data[0].chk){
+
+            }else{
+
+            }
+        })
+}
+</script>
 <style>
 
 .backimg{
@@ -60,6 +85,9 @@
     color: white;
 }
 .error1{
+    display: none;
+}
+.error1.check{
     color: #CB0000;
     position: absolute;
     margin-top: 480px;

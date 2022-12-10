@@ -36,8 +36,7 @@
 import axios from 'axios'
 import { reactive } from "vue"
 const now=reactive(new Date());
-// let list=reactive([]);
-const anniversarys = reactive([])
+let anniversarys = reactive([])
 
 window.onload=function(){
     axios
