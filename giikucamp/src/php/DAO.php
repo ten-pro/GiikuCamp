@@ -80,10 +80,10 @@ class Cal
         $ps->bindValue(1, $name, PDO::PARAM_STR);
         $ps->execute();
         $search = $ps->fetchAll();
-        if ($search['con'] > 0) {
-            $data = 'NG';
-        } else {
+        if ($search == null) {
             $data = 'OK';
+        } else {
+            $data = 'NG';
         }
 
         return $data;

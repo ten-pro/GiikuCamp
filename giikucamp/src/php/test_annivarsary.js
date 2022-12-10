@@ -46,7 +46,6 @@ const app = new Vue({
         },
         loginpush() {
             this.login();
-            setTimeout(this.reload,2000);
         },
         create_user_push(){
             this.create_user();
@@ -101,7 +100,6 @@ const app = new Vue({
                     }
                 })
                 .then(
-                    // (response) => (this.loginchk = response.data),
                     (response) => (console.log(response.data))
                 )
         },
@@ -127,7 +125,6 @@ const app = new Vue({
                     }
                 })
                 .then(
-                    // (response) => (this.loginchk = response.data),
                     (response) => (console.log(response.data))
                 )
         },
@@ -142,7 +139,6 @@ const app = new Vue({
                     }
                 })
                 .then(
-                    // (response) => (this.loginchk = response.data),
                     (response) => (console.log(response.data))
                 )
         },
@@ -158,7 +154,6 @@ const app = new Vue({
                     }
                 })
                 .then(
-                    // (response) => (this.loginchk = response.data),
                     (response) => (console.log(response.data))
                 )
         }
@@ -167,7 +162,7 @@ const app = new Vue({
         loginchk() {
             if (this.loginchk[0].chk == true) {
                 window.sessionStorage.setItem(['user_id'], this.loginchk[0].id);
-                location.href = "./test_annivarsary.html";
+                setTimeout(this.reload,2000);
             }
         }
     },
