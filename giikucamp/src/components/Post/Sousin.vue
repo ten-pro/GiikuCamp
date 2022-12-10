@@ -12,16 +12,13 @@
         </div>
 </template>
 <script setup>
-    // import {ref} from "vue"
-    //  const obj = reactive()({
-    //     date(){
-    //         return{
-    //             title:'title',
-    //             date1:'date1',
-    //             detail:'detail'
-    //         }
-    //     }
-    // });
+    import { reactive } from "vue"
+    let title=reactive();
+    let tuki = reactive();
+    let detail = reactive();
+
+
+
 </script>
 <style>
   .sousin_form{
