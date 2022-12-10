@@ -1,5 +1,5 @@
 <template>
-<a src="/home"><img src="../IMG/yazirusi.png" alt="" class="yazi"></a>
+<a href="/home"><img src="../IMG/yazirusi.png" alt="" class="yazi"></a>
 </template>
 <style>
   .yazi{

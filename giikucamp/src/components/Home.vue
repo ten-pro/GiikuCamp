@@ -8,6 +8,7 @@
       <div class="pulsbutton">
         <PulsButton />
       </div>
+      
     </div>
   </template>
   <script setup>
