@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Login from '../components/Login.vue';
 import Home from '../components/Home.vue';
-import Header from '../components/Header.vue';
+import Post from '../components/Post.vue';
+import Setting from '../components/Setting.vue';
 
 const routes = [
   {
@@ -8,8 +10,16 @@ const routes = [
     component: Home,
   },
   {
-    path: '/header',
-    component: Header,
+    path: '/home',
+    component: Home,
+  },
+  {
+    path: '/post',
+    component: Post,
+  },
+  {
+    path: '/setting',
+    component: Setting,
   },
 ]
 

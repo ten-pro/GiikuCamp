@@ -10,7 +10,7 @@
   "dependencies": {
     "v-calendar": "^3.0.0-alpha.8",
     "push.js": "^1.0.12",
-    "vue": "^3.2.45"
+    "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
