@@ -12,7 +12,7 @@
                     <div class="mozi5">Re-enter</div>
                     <input type="pass" class="form_reenter">
                     
-                <p class="error2">＊ユーザー名が登録されていません</p>
+                <p class="error2"></p>
                 <button class="createbtn2">Create new</button>
         </form>
         <button class="logbtn2">login</button>

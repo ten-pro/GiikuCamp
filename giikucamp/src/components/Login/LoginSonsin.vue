@@ -9,7 +9,7 @@
                     <div class="mozi2">pass</div>
                     <input type="pass" class="login_pass">
 
-                <p class="error1">＊ユーザー名が登録されていません</p>
+                <p class="error1"></p>
                 <button class="logbtn">login</button>
         </form>
         <button class="createbtn">create new</button>
