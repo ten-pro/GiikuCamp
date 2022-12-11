@@ -19,7 +19,7 @@ class Cal
         $ps->execute();
         $search = $ps->fetchAll();
         foreach ($search as $row) {
-            array_push($data, array('id' => $row['user_id'], 'name' => $row['user_name'], 'alert_day1' => $row['alert_day1'], 'alert_day3' => $row['alert_day3'], 'alert_day5' => $row['alert_day5'], 'alert_day7' => $row['alert_day7'], 'alert_time' => $row['alert_time'], 'alert_date' => $row['alert_date']));
+            array_push($data, array('id' => $row['user_id'], 'name' => $row['user_name'], 'alert' => $row['alert'], 'alert_day1' => $row['alert_date1'], 'alert_day3' => $row['alert_date3'], 'alert_day5' => $row['alert_date5'], 'alert_day7' => $row['alert_date7'], 'alert_time' => $row['alert_time']));
         }
         return $data;
     }
@@ -155,11 +155,11 @@ class Cal
     }
 
 
-    function update_user($user_id, $user_name, $alert_day1, $alert_day3, $alert_day5, $alert_day7, $alert_time, $alert_date)
+    function update_user($user_id, $user_name, $alert_day1, $alert_day3, $alert_day5, $alert_day7, $alert_time,$alert)
     {
 
         $pdo = $this->get_pdo();
-        $sql = 'UPDATE user_tbl SET user_name=?,alert_day1=?,alert_day3=?,alert_day5=?,alert_day7=?,alert_time=?,alert_date=? WHERE user_id = ?';
+        $sql = 'UPDATE user_tbl SET user_name=?,alert_day1=?,alert_day3=?,alert_day5=?,alert_day7=?,alert_time=?,alert=? WHERE user_id = ?';
 
         $ps = $pdo->prepare($sql);
         $ps->bindValue(1, $user_name, PDO::PARAM_STR);
@@ -168,12 +168,12 @@ class Cal
         $ps->bindValue(4, $alert_day5, PDO::PARAM_INT);
         $ps->bindValue(5, $alert_day7, PDO::PARAM_INT);
         $ps->bindValue(6, $alert_time, PDO::PARAM_STR);
-        $ps->bindValue(7, $alert_date, PDO::PARAM_STR);
+        $ps->bindValue(7, $alert, PDO::PARAM_INT);
         $ps->bindValue(8, $user_id, PDO::PARAM_INT);
         $ps->execute();
 
         $data = array();
-        array_push($data, array('id' => $user_id, 'name' => $user_name, 'alert_day1' => $alert_day1, 'alert_day3' => $alert_day3, 'alert_day5' => $alert_day5, 'alert_day7' => $alert_day7, 'alert_time' => $alert_time, 'alert_date' => $alert_date));
+        array_push($data, array('id' => $user_id, 'name' => $user_name, 'alert_day1' => $alert_day1, 'alert_day3' => $alert_day3, 'alert_day5' => $alert_day5, 'alert_day7' => $alert_day7, 'alert_time' => $alert_time, 'alert' => $alert));
 
         return $data;
     }
@@ -188,7 +188,7 @@ class Cal
         $ps->execute();
         $search = $ps->fetchAll();
         foreach ($search as $row) {
-            array_push($data, array('id' => $row['user_id'], 'name' => $row['user_name'], 'alert' => $row['alert'], 'alert_time' => $row['alert_time'], 'alert_date' => $row['alert_date']));    
+            array_push($data, array('id' => $row['user_id'], 'name' => $row['user_name'], 'alert' => $row['alert'], 'alert_time' => $row['alert_time']));    
         }
 
         return $data;
