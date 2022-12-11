@@ -1,7 +1,6 @@
 <template>
     <div class="back">
         <img src="../IMG/back.png" alt="" class="backimg">
-
         <div class="mozi1">name</div>
         <input type="text" class="login_input" v-model="name"><br>
 
