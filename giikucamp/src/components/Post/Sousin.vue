@@ -3,19 +3,46 @@
             <form action="">
                 <div class="sousin_form" id="app">
                     <input type="text" class="forminput" placeholder="title" v-model="title" name="title">
-                    <input type="date" class="datestyle" v-model = "date1" name="date1" placeholder="年/月/日" >
+                    <input type="date" class="datestyle" v-model = "date1" name="date1" id="set" placeholder="年/月/日" >
                     <input type="text" class="postdetailtxt" placeholder="(example)it was a great day..." v-model = "detail" name="detail">
                 </div>
-                <img src="../IMG/touroku.png" class="torokuimg">
+                <img src="../IMG/touroku.png" class="torokuimg" @click="submit">
             </form>
-            <p class="error">タイトルを入力してください</p>
+            <p class="error"></p>
         </div>
 </template>
 <script setup>
     import { reactive } from "vue"
+    import axios from 'axios'
     let title=reactive();
-    let tuki = reactive();
+    let date1 = reactive();
     let detail = reactive();
+
+//予定を作成
+
+
+
+  const submit = () =>{
+            axios
+                .post('https://mp-class.chips.jp/calendar/main.php', {
+                    
+                    user_id:window.sessionStorage.getItem(['user_id']),
+                    annivarsary_day:date1,
+                    annivarsary_title:title,
+                    annivarsary_detail:detail,
+                    insert_annivarsary: ''
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(
+                    // (response) => (this.loginchk = response.data),
+                    (response) => (console.log(response.data))
+                )
+  }
+
+
 
 
 
