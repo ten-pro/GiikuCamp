@@ -1,23 +1,57 @@
 <template>
+    <div id="app">
     <div class="back">
         <img src="../IMG/back.png" alt="" class="backimg">
-        <form action="">
-                
                     <div class="mozi3">name</div>
-                    <input type="text" class="form_input"><br>
+                    <input type="text" class="form_input"  v-model="name[0]"><br>
             
                     <div class="mozi4">pass</div>
-                    <input type="pass" class="form_pass">
+                    <input type="pass" class="form_pass"  v-model="pass1[0]">
 
                     <div class="mozi5">Re-enter</div>
-                    <input type="pass" class="form_reenter">
+                    <input type="pass" class="form_reenter" v-model="pass2[0]">
                     
-                <p class="error2"></p>
-                <button class="createbtn2">Create new</button>
-        </form>
-        <button class="logbtn2">login</button>
+                <p class="error2" v-show="name[0]==''">＊ユーザー名を入力してください</p>
+                <p class="error2 pass1" v-show="pass1[0]==''">＊パスワードを入力して下さい</p>
+                <p class="error2 pass2" v-show="pass1[0]==pass2[0]">＊パスワードが一致しません</p>
+                <button class="createbtn2" @click="create">Create new</button>
+        <a href="/"><button class="logbtn2">login</button></a>
     </div>
+</div>
 </template>
+<script setup>
+import axios from 'axios'
+import { reactive } from "vue"
+import swal from 'sweetalert'
+let name=reactive([""]);
+let display=reactive(["none"]);
+let pass1=reactive([""]);
+let pass2=reactive([""]);
+const create=()=>{
+    if(pass1[0]==""){
+        swal("パスワードを入力してください","","error")
+    }else if(name[0]==""){
+        swal("名前を入力してください","","error")
+    }else if(pass1[0]==pass2[0]){
+        console.log(name[0]+" "+pass1[0]);
+    axios
+        .post('https://mp-class.chips.jp/calendar/main.php', {
+            name: name[0],
+            pass: pass1[0],
+            create_user: ''
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (res) {
+            console.log(res.data);
+        })
+    }else{
+        swal("パスワードが一致していません。","","error")
+    }
+}
+</script>
 <style>
 
 .backimg{
@@ -83,7 +117,7 @@
 .error2{
     color: #CB0000;
     position: absolute;
-    margin-top: 500px;
+    margin-top: 480px;
     margin-left: 55px;
 }
 .createbtn2{
@@ -110,5 +144,10 @@
     color: #9C39A1;
     background: transparent;
 }
-
+.pass1{
+    margin-top:500px;
+}
+.pass2{
+    margin-top:520px;
+}
 </style>

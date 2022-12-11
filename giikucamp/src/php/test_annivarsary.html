@@ -10,6 +10,48 @@
 
 <body>
     <div id="app">
+        <span>
+            <h1>ユーザ情報</h1>
+            <div v-for="item in user">
+                <p>id:{{item.id}}</p>
+                <p>name:{{item.name}}</p>
+                <p>alert:{{item.alert}}</p>
+                <p>alert_time:{{item.alert_time}}</p>
+                <p>alert_date:{{item.alert_date}}</p>
+            </div>
+            <h1>ユーザ情報アップデート</h1>
+            <p>name:<input type="text" v-model="user_name"></p>
+            alert:<select name="alert" v-model="alert">
+                <option value="0" selected>NO</option>
+                <option value="1">YES</option>
+            </select>
+            <p>alert_date:<input type="number" v-model="alert_date"></p>
+            <p>alert_time:<input type="time" v-model="alert_time"></p>
+            <input type="button" value="アップデート" @click="update_user_push">
+            <h1>ユーザ作成</h1>
+            name:<input type="text" v-model="new_name"><br>
+            pass:<input type="text" v-model="new_pass"><br>
+            <input type="button" @click="create_user_push" value="新規作成">
+            <h1>ログインユーザ</h1>
+            name:<input type="text" v-model="name"><br>
+            pass:<input type="text" v-model="password"><br>
+            <input type="button" @click="loginpush" value="ログイン">
+            <h1>予定作成</h1>
+            annivarsary_day:<input type="date" v-model="annivarsary_day"><br>
+            annivarsary_title:<input type="text" v-model="annivarsary_title"><br>
+            annivarsary_detail:<input type="text" v-model="annivarsary_detail"><br>
+            <input type="button" @click="push_create" value="作成">
+            <h1>予定一覧</h1>
+            <input type="button" @click="reload" value="リロード">
+            <div v-for="item in list">
+                <p>annivarsary_id:{{item.annivarsary_id}}</p>
+                <p>annivarsary_day:{{item.annivarsary_day}}</p>
+                <p>annivarsary_title:{{item.annivarsary_title}}</p>
+                <p>annivarsary_detail:{{item.annivarsary_detail}}</p>
+                <input type="button" value="予定削除" @click="delete_annivarsary(item.annivarsary_id)">
+                <p>------------------------------------------</p>
+            </div>
+        </span>
 
     </div>
     <!-- vue.jsのCDN -->
