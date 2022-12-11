@@ -9,65 +9,72 @@ header('Content-Type: application/json; charset=UTF-8');
 //DAOの読み込み
 require './DAO.php';
 
-
-//get_userの引数がある場合user情報を返す
-if (isset($_POST['get_user']) == true) {
-    $class = new Cal();
-    $data = $class->get_user($_POST['user_id']);
-}
-
-
-//login_userの引数がある場合はtrueを返す
-if(isset($_POST['login_user'])==true){
-    $class = new Cal();
-    $data = $class->login_user($_POST['user_name'],$_POST['user_pass']);
-}
+try {
+    //get_userの引数がある場合user情報を返す
+    if (isset($_POST['get_user']) == true) {
+        $class = new Cal();
+        $data = $class->get_user($_POST['user_id']);
+    }
 
 
-//create_userの引数がある時の処理
-if(isset($_POST['create_user'])==true){
-    $class = new Cal();
-    $data = $class->insert_user($_POST['name'],$_POST['pass']);
-}
+    //login_userの引数がある場合はtrueを返す
+    if (isset($_POST['login_user']) == true) {
+        $class = new Cal();
+        $data = $class->login_user($_POST['user_name'], $_POST['user_pass']);
+    }
 
 
-//update_userの引数がある時の処理
-if(isset($_POST['update_user'])==true){
-    $class = new Cal();
-    $data = $class->update_user($_POST['user_id'],$_POST['user_name'],$_POST['alert'],$_POST['alert_time'],$_POST['alert_date']);
-}
+    //create_userの引数がある時の処理
+    if (isset($_POST['create_user']) == true) {
+        $class = new Cal();
+        $data = $class->insert_user($_POST['name'], $_POST['pass']);
+    }
 
 
-//get_nameの引数がある時の処理
-if(isset($_GET['get_name'])==true){
-    $class = new Cal();
-    $data = $class->get_name($_POST['name']);
-}
+    //update_userの引数がある時の処理
+    if (isset($_POST['update_user']) == true) {
+        $class = new Cal();
+        $data = $class->update_user($_POST['user_id'], $_POST['user_name'], $_POST['alert_day1'], $_POST['alert_day2'], $_POST['alert_day3'], $_POST['alert_day4'], $_POST['alert_time'], $_POST['alert_date']);
+    }
 
 
-//delete_annivarsaryの引数がある時の処理
-if(isset($_POST['delete_annivarsary'])==true){
-    $class = new Cal();
-    $data = $class->delete_annivarsary($_POST['annivarsary_id']);
-}
+    //get_nameの引数がある時の処理
+    if (isset($_GET['get_name']) == true) {
+        $class = new Cal();
+        $data = $class->get_name($_POST['name']);
+    }
 
 
-//insert_annivarsaryの引数がある時の処理
-if(isset($_POST['insert_annivarsary'])==true){
-    $class = new Cal();
-    $data = $class->insert_annivarsary($_POST['annivarsary_day'],$_POST['user_id'],$_POST['annivarsary_title'],$_POST['annivarsary_detail']);
-}
+    //delete_annivarsaryの引数がある時の処理
+    if (isset($_POST['delete_annivarsary']) == true) {
+        $class = new Cal();
+        $data = $class->delete_annivarsary($_POST['annivarsary_id']);
+    }
 
-//update_annivarsaryの引数がある時の処理
-if(isset($_POST['update_annivarsary'])==true){
-    $class = new Cal();
-    $data = $class->update_annivarsary($_POST['annivarsary_day'],$_POST['annivarsary_id'],$_POST['$annivarsary_title'],$_POST['annivarsary_detail']);
-}
 
-//annivarsary_listの引数がある時の処理
-if(isset($_POST['get_list'])==true){
-    $class = new Cal();
-    $data = $class->annivarsary_list($_POST['user_id']);
+    //insert_annivarsaryの引数がある時の処理
+    if (isset($_POST['insert_annivarsary']) == true) {
+        $class = new Cal();
+        $data = $class->insert_annivarsary($_POST['annivarsary_day'], $_POST['user_id'], $_POST['annivarsary_title'], $_POST['annivarsary_detail']);
+    }
+
+    //update_annivarsaryの引数がある時の処理
+    if (isset($_POST['update_annivarsary']) == true) {
+        $class = new Cal();
+        $data = $class->update_annivarsary($_POST['annivarsary_day'], $_POST['annivarsary_id'], $_POST['$annivarsary_title'], $_POST['annivarsary_detail']);
+    }
+
+    //annivarsary_listの引数がある時の処理
+    if (isset($_POST['get_list']) == true) {
+        $class = new Cal();
+        $data = $class->annivarsary_list($_POST['user_id']);
+    }
+} catch (Exception $ex) {
+    $time=date('Y/m/d H:i:s');
+    error_log($time.' '.$ex->getMessage() . "\n", 3, "error_log.txt");
+} catch (Error $err) {
+    $time=date('Y/m/d H:i:s');
+    error_log($time.' '.$err->getMessage() . "\n", 3, "error_log.txt");
 }
 
 //arrayの中身をJSON形式に変換している
