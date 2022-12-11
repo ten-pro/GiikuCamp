@@ -2,7 +2,7 @@
 <template>
     <div>
         <!-- <div v-if=""></div> -->
-        <div v-for="annive in anniversarys" :key="annive" class="anniverap">
+        <div v-for="annive,index in anniversarys" :key="annive" class="anniverap">
             <div class="flex">
                 <div class="yearday">
                     <div class="flex">
