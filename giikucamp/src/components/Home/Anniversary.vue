@@ -26,7 +26,7 @@
                     <p class="title">{{annive.title}}</p>
                     <p class="anniversaryday">{{annive.annivemonth}}月{{annive.anniveday}}日　あと<span class="countdown">{{annive.nextmonth}}</span>ヶ月<span class="countdown">{{annive.nextday}}</span>日</p>
                     <img src="../IMG/pulldown.png" class="pulldown" @click="wide(index)">
-                    <div class="gomi" v-show="trash">
+                    <div class="gomi" v-show="trash[index]" @click="deletee(annive.annivarsary_id)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
@@ -58,11 +58,15 @@ window.onload = function () {
         })
         .then(function (res) {
             console.log(res.data);
+
             for (let i = 0; i < res.data.length; i++) {
+                display[i] = false;
+                    trash[i] = false;
                 let annive = new Date(res.data[i].annivarsary_day);
                 anniversarys[anniversarys.length] = {
                     title: res.data[i].annivarsary_title,
                     detail:res.data[i].annivarsary_detail,
+                    annivarsary_id:res.data[i].annivarsary_id,
                     anniveyear: annive.getFullYear(),
                     annivemonth: annive.getMonth() + 1,
                     anniveday: annive.getDate(),
@@ -120,7 +124,23 @@ window.onload = function () {
 }
 const wide=(i)=>{
     display[i] = !display[i]
+    trash[i] = !trash[i]
 }
+const deletee =(annivarsary_id)=>{
+            axios
+                .post('https://mp-class.chips.jp/calendar/main.php', {
+                    annivarsary_id: annivarsary_id,
+                    delete_annivarsary: ''
+                }, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then(function(res){
+									location.href = "";
+									console.log(res.data)
+								})
+        }
 </script>
 
 <style scoped>
@@ -134,6 +154,13 @@ const wide=(i)=>{
     height:80px;
     border-radius: 20px;
     background-color: #E27A93;
+}
+.gomi{
+    color: #E27A93;
+    position: absolute;
+    bottom: 3%;
+    right:13%;
+    cursor: pointer;
 }
 .white{
     color:white;
@@ -156,7 +183,7 @@ const wide=(i)=>{
     margin-top:0px;
 }
 .detail{
-    padding:10px 20px 10px 10px;
+    padding:10px 50px 10px 10px;
 }
 .text{
     position: relative;
