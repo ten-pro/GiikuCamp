@@ -12,7 +12,7 @@
         </div>
         <div class="userspace">
             <div class="username">ユーザー名</div>
-            <input type="text" class="namebox" placeholder="placeholder" v-model="userName">
+            <input type="text" class="namebox" placeholder="placeholder" v-model="userName[0]">
         </div>
         <div class="error">
             <div class="uerror">この名前はすでに使用されています。</div>
@@ -88,15 +88,15 @@ import Header from "./Header.vue"
 import LogoutButton from "./setting/LogoutButton.vue"
 import { reactive } from "vue"
 import axios from "axios"
-import { onMounted } from 'vue'
-let userName = reactive("kaashi")
+import { ref } from 'vue'
+let userName = reactive([""])
 let check1 = reactive(false)
 let check3 = reactive(false)
 let check5 = reactive(false)
 let check7 = reactive(false)
 let database = reactive(new Date("2022-12-18"))
 let now = reactive(new Date())
-onMounted(() => {
+window.onload=function(){
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
             user_id: 5,
@@ -107,10 +107,9 @@ onMounted(() => {
             }
         })
         .then(function (res) {
-            let userData = res.data;
-            userName = userData[0].name;
+            userName[0] = res.data[0].name;
         })
-})
+}
 
 const sam = () => {
     if (database.getFullYear() == now.getFullYear() && database.getMonth() == now.getMonth() && database.getDate() - 1 == now.getDate()) {

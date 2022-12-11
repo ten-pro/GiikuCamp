@@ -8,7 +8,7 @@ import Setting from '../components/Setting.vue';
 const routes = [
   {
     path: '/',
-    component: Setting,
+    component: Login,
   },
   {
     path: '/create',
