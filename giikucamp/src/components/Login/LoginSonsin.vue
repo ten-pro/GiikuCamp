@@ -38,7 +38,6 @@ const login = () => {
                 sessionStorage.setItem('id', res.data[0].id);
                 axios
                     .post('https://mp-class.chips.jp/calendar/main.php', {
-                        // user_id: sessionStorage.getItem('user_id'),
                         user_id: 1,
                         get_list: ''
                     }, {
@@ -48,54 +47,54 @@ const login = () => {
                     })
                     .then(function (res) {
                         console.log(res.data);
-                        for (let i = 0; i < res.data.length; i++) {
-                            let annive = new Date(res.data[i].annivarsary_day);
-                            if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 1 == now.getDate()) {
-                                Push.create(res.data[i].annivarsary_title, {
-                                    body: '１日前だよ！準備はできてる？',
-                                    icon: 'image/heart.png',
-                                    timeout: 4000,
-                                    onClick: function () {
-                                        window.focus();
-                                        this.close();
-                                    }
-                                });
-                            }
-                            if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 3 == now.getDate()) {
-                                Push.create(res.data[i].annivarsary_title, {
-                                    body: '３日前だよ！準備はできてる？',
-                                    icon: 'image/heart.png',
-                                    timeout: 4000,
-                                    onClick: function () {
-                                        window.focus();
-                                        this.close();
-                                    }
-                                });
-                            }
-                            if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 5 == now.getDate()) {
-                                Push.create(res.data[i].annivarsary_title, {
-                                    body: '５日前だよ！準備はできてる？',
-                                    icon: 'image/heart.png',
-                                    timeout: 4000,
-                                    onClick: function () {
-                                        window.focus();
-                                        this.close();
-                                    }
-                                });
-                            }
-                            if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 7 == now.getDate()) {
-                                Push.create(res.data[i].annivarsary_title, {
-                                    body: '７日前だよ！準備はできてる？',
-                                    icon: './IMG/white.png',
-                                    timeout: 4000,
-                                    onClick: function () {
-                                        window.focus();
-                                        this.close();
-                                    }
-                                });
-                            }
-                            location.href = "/home";
-                        }
+                        // for (let i = 0; i < res.data.length; i++) {
+                        //     let annive = new Date(res.data[i].annivarsary_day);
+                        //     if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 1 == now.getDate()) {
+                        //         Push.create(res.data[i].annivarsary_title, {
+                        //             body: '１日前だよ！準備はできてる？',
+                        //             icon: 'image/heart.png',
+                        //             timeout: 4000,
+                        //             onClick: function () {
+                        //                 window.focus();
+                        //                 this.close();
+                        //             }
+                        //         });
+                        //     }
+                        //     if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 3 == now.getDate()) {
+                        //         Push.create(res.data[i].annivarsary_title, {
+                        //             body: '３日前だよ！準備はできてる？',
+                        //             icon: 'image/heart.png',
+                        //             timeout: 4000,
+                        //             onClick: function () {
+                        //                 window.focus();
+                        //                 this.close();
+                        //             }
+                        //         });
+                        //     }
+                        //     if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 5 == now.getDate()) {
+                        //         Push.create(res.data[i].annivarsary_title, {
+                        //             body: '５日前だよ！準備はできてる？',
+                        //             icon: 'image/heart.png',
+                        //             timeout: 4000,
+                        //             onClick: function () {
+                        //                 window.focus();
+                        //                 this.close();
+                        //             }
+                        //         });
+                        //     }
+                        //     if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 7 == now.getDate()) {
+                        //         Push.create(res.data[i].annivarsary_title, {
+                        //             body: '７日前だよ！準備はできてる？',
+                        //             icon: './IMG/white.png',
+                        //             timeout: 4000,
+                        //             onClick: function () {
+                        //                 window.focus();
+                        //                 this.close();
+                        //             }
+                        //         });
+                        //     }
+                        // }
+                        location.href="/home"
                     })
             }
         })

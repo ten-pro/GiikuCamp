@@ -111,11 +111,11 @@ window.onload=function(){
         .then(function (res) {
             console.log(res.data)
             data.name = res.data[0].name;
-            res.data.alert_date==1?data.sw=true:data.sw=false;
-            res.data.alert_day1==1?data.check1=true:data.check1=false;
-            res.data.alert_day3==1?data.check3=true:data.check3=false;
-            res.data.alert_day5==1?data.check5=true:data.check5=false;
-            res.data.alert_day7==1?data.check7=true:data.check7=false;
+            res.data[0].alert==1?data.sw=true:data.sw=false;
+            res.data[0].alert_day1==1?data.check1=true:data.check1=res.data.alert_day1;
+            res.data[0].alert_day3==1?data.check3=true:data.check3=false;
+            res.data[0].alert_day5==1?data.check5=true:data.check5=false;
+            res.data[0].alert_day7==1?data.check7=true:data.check7=false;
         })
 }
 const setting =()=>{
@@ -126,10 +126,10 @@ const setting =()=>{
             user_name: data.name,
             alert: data.sw?1:0,
             alert_time: "",
-            alert_date_day1: data.check1?1:0,
-            alert_date_day3: data.check3?1:0,
-            alert_date_day5: data.check5?1:0,
-            alert_date_day7: data.check7?1:0,
+            alert_date1: data.check1?1:0,
+            alert_date3: data.check3?1:0,
+            alert_date5: data.check5?1:0,
+            alert_date7: data.check7?1:0,
             update_user: ''
         }, {
             headers: {
@@ -138,7 +138,7 @@ const setting =()=>{
         })
         .then(
             // (response) => (this.loginchk = response.data),
-            (response) => (console.log(response.data))
+            (response) => (location.href="/home")
         )
 }
 </script>
