@@ -65,50 +65,50 @@ window.onload = function () {
                     nextmonth: 11 - (now.getMonth() - annive.getMonth() > 0 ? now.getMonth() - annive.getMonth() : now.getMonth() - annive.getMonth() == 0 && now.getDate() < annive.getDate() ? 11 : annive.getMonth() - now.getMonth()),
                     nextday: annive.getDate() - now.getDate() > 0 ? annive.getDate() - now.getDate() : now.getMonth() == 1 || now.getMonth() == 3 || now.getMonth() == 5 || now.getMonth() == 7 || now.getMonth() == 8 || now.getMonth() == 10 || now.getMonth() == 12 ? 32 - now.getDate() + annive.getDate() : now.getMonth() == 2 ? 29 - now.getDate() + annive.getDate() : 31 - now.getDate() + annive.getDate()
                 }
-                if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 1 == now.getDate()) {
-                    Push.create(res.data[i].annivarsary_title, {
-                        body: '１日前だよ！準備はできてる？',
-                        icon: 'image/heart.png',
-                        timeout: 4000,
-                        onClick: function () {
-                            window.focus();
-                            this.close();
-                        }
-                    });
-                }
-                if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 3 == now.getDate()) {
-                    Push.create(res.data[i].annivarsary_title, {
-                        body: '３日前だよ！準備はできてる？',
-                        icon: 'image/heart.png',
-                        timeout: 4000,
-                        onClick: function () {
-                            window.focus();
-                            this.close();
-                        }
-                    });
-                }
-                if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 5 == now.getDate()) {
-                    Push.create(res.data[i].annivarsary_title, {
-                        body: '５日前だよ！準備はできてる？',
-                        icon: 'image/heart.png',
-                        timeout: 4000,
-                        onClick: function () {
-                            window.focus();
-                            this.close();
-                        }
-                    });
-                }
-                if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 7 == now.getDate()) {
-                    Push.create(res.data[i].annivarsary_title, {
-                        body: '７日前だよ！準備はできてる？',
-                        icon: './IMG/white.png',
-                        timeout: 4000,
-                        onClick: function () {
-                            window.focus();
-                            this.close();
-                        }
-                    });
-                }
+                // if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 1 == now.getDate()) {
+                //     Push.create(res.data[i].annivarsary_title, {
+                //         body: '１日前だよ！準備はできてる？',
+                //         icon: 'image/heart.png',
+                //         timeout: 4000,
+                //         onClick: function () {
+                //             window.focus();
+                //             this.close();
+                //         }
+                //     });
+                // }
+                // if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 3 == now.getDate()) {
+                //     Push.create(res.data[i].annivarsary_title, {
+                //         body: '３日前だよ！準備はできてる？',
+                //         icon: 'image/heart.png',
+                //         timeout: 4000,
+                //         onClick: function () {
+                //             window.focus();
+                //             this.close();
+                //         }
+                //     });
+                // }
+                // if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 5 == now.getDate()) {
+                //     Push.create(res.data[i].annivarsary_title, {
+                //         body: '５日前だよ！準備はできてる？',
+                //         icon: 'image/heart.png',
+                //         timeout: 4000,
+                //         onClick: function () {
+                //             window.focus();
+                //             this.close();
+                //         }
+                //     });
+                // }
+                // if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 7 == now.getDate()) {
+                //     Push.create(res.data[i].annivarsary_title, {
+                //         body: '７日前だよ！準備はできてる？',
+                //         icon: './IMG/white.png',
+                //         timeout: 4000,
+                //         onClick: function () {
+                //             window.focus();
+                //             this.close();
+                //         }
+                //     });
+                // }
             }
         })
 }
