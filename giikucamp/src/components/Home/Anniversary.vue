@@ -2,7 +2,7 @@
 <template>
     <div>
         <!-- <div v-if=""></div> -->
-        <div v-for="annive in anniversarys" :key="annive" class="anniverap">
+        <div v-for="annive,index in anniversarys" :key="annive" class="anniverap">
             <div class="flex">
                 <div class="yearday">
                     <div class="flex">
@@ -25,7 +25,8 @@
                 <div class="text">
                     <p class="title">{{annive.title}}</p>
                     <p class="anniversaryday">{{annive.annivemonth}}月{{annive.anniveday}}日　あと<span class="countdown">{{annive.nextmonth}}</span>ヶ月<span class="countdown">{{annive.nextday}}</span>日</p>
-                    <img src="../IMG/pulldown.png" class="pulldown">
+                    <img src="../IMG/pulldown.png" class="pulldown" @click="wide(index)">
+                    <div v-show="display[index]" class="detail">{{ annive.detail }}</div>
                 </div>
             </div>
         </div>
@@ -37,11 +38,22 @@ import axios from 'axios'
 import { reactive } from "vue"
 const now=reactive(new Date());
 let anniversarys = reactive([])
-
+let display = reactive([false])
 window.onload=function(){
+    // anniversarys[anniversarys.length]={
+    //                     title:"記念日",
+    //                     detail:"記念日詳細ああああああああああああああああああああああああ",
+    //                     anniveyear:11,
+    //                     annivemonth:11,
+    //                     anniveday:11,
+    //                     year:110,
+    //                     month:11,
+    //                     nextmonth:11,
+    //                     nextday:11
+    //             }
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
-            user_id: 6,
+            user_id: 1,
             get_list: ''
         }, {
             headers: {
@@ -51,9 +63,11 @@ window.onload=function(){
         .then(function(res){
             console.log(res.data);
                 for(let i=0;i<res.data.length;i++){
+                    display[i] = false;
                     let annive = new Date(res.data[i].annivarsary_day);
                     anniversarys[anniversarys.length]={
                         title:res.data[i].annivarsary_title,
+                        detail:res.data[i].annivarsary_detail,
                         anniveyear:annive.getFullYear(),
                         annivemonth:annive.getMonth()+1,
                         anniveday:annive.getDate(),
@@ -65,7 +79,9 @@ window.onload=function(){
             }
         })
 }
-
+const wide=(i)=>{
+    display[i] = !display[i]
+}
 </script>
 
 <style scoped>
@@ -100,12 +116,14 @@ window.onload=function(){
     font-size: 12px;
     margin-top:0px;
 }
-
+.detail{
+    padding:10px 20px 10px 10px;
+}
 .text{
     position: relative;
     margin-left:16px;
     width:265px;
-    height:100px;
+    height:100%;
     border: 2px solid #E27A93;
     border-radius: 10px;
     background-color: #FDFCFC;
@@ -128,9 +146,10 @@ window.onload=function(){
 }
 .pulldown{
     position:absolute;
-    top:75px;
+    top:75%;
     right:5px;
     width:25px;
+    cursor: pointer;
 }
 
 
