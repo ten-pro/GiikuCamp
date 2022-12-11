@@ -8,7 +8,7 @@
         <div class="mozi2">pass</div>
         <input type="pass" class="login_pass" v-model="pass">
 
-        <p class="error1">＊ユーザー名が登録されていません</p>
+        <p class="error1">ユーザー名が登録されていないか、パスワードが間違っています</p>
         <button class="logbtn" @click="login">login</button>
         <a href="/create"><button class="createbtn">create new</button></a>
     </div>
@@ -18,7 +18,7 @@ import axios from 'axios'
 import { reactive } from "vue"
 let name=reactive("");
 let pass=reactive("");
-let display=reactive("");
+let display=reactive(["none"]);
 const login=()=>{
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
@@ -32,10 +32,11 @@ const login=()=>{
         })
         .then(function (res) {
             console.log(res.data);
-            if(res.data[0].chk){
-
+            if(res.data==false){
+                display[0]="block"
             }else{
-
+                sessionStorage.setItem('id',res.data[0].id);
+                location.href="/home";
             }
         })
 }
@@ -88,8 +89,9 @@ const login=()=>{
     display: v-bind(display);
     color: #CB0000;
     position: absolute;
+    width: 260px;
     margin-top: 480px;
-    margin-left: 55px;
+    margin-left: 75px;
 }
 .logbtn{
     position: absolute;
