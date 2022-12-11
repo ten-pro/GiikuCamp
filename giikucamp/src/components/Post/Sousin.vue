@@ -26,7 +26,8 @@
             axios
                 .post('https://mp-class.chips.jp/calendar/main.php', {
                     
-                    user_id:window.sessionStorage.getItem(['user_id']),
+                    // user_id:window.sessionStorage.getItem(['user_id']),
+                    user_id:1,
                     annivarsary_day:date1,
                     annivarsary_title:title,
                     annivarsary_detail:detail,
