@@ -96,6 +96,7 @@ let check5 = reactive(false)
 let check7 = reactive(false)
 let database = reactive(new Date("2022-12-18"))
 let now = reactive(new Date())
+let rierki = reactive(1101)
 window.onload=function(){
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
