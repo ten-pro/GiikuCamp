@@ -45,6 +45,7 @@ import { reactive } from "vue"
 const now=reactive(new Date());
 let anniversarys = reactive([])
 let display = reactive([false])
+let trash = reactive([false])
 window.onload = function () {
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
@@ -61,7 +62,7 @@ window.onload = function () {
 
             for (let i = 0; i < res.data.length; i++) {
                 display[i] = false;
-                    trash[i] = false;
+                trash[i] = false;
                 let annive = new Date(res.data[i].annivarsary_day);
                 anniversarys[anniversarys.length] = {
                     title: res.data[i].annivarsary_title,

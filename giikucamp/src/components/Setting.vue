@@ -119,6 +119,7 @@ window.onload=function(){
         })
 }
 const setting =()=>{
+    console.log(data);
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
             user_id: 1,
