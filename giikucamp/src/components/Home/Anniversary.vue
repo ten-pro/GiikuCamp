@@ -66,8 +66,8 @@ window.onload = function () {
                     nextday: annive.getDate() - now.getDate() > 0 ? annive.getDate() - now.getDate() : now.getMonth() == 1 || now.getMonth() == 3 || now.getMonth() == 5 || now.getMonth() == 7 || now.getMonth() == 8 || now.getMonth() == 10 || now.getMonth() == 12 ? 32 - now.getDate() + annive.getDate() : now.getMonth() == 2 ? 29 - now.getDate() + annive.getDate() : 31 - now.getDate() + annive.getDate()
                 }
                 if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 1 == now.getDate()) {
-                    Push.create('記念日一日前です。', {
-                        body: '準備はできてる？',
+                    Push.create(res.data[i].annivarsary_title, {
+                        body: '１日前だよ！準備はできてる？',
                         icon: 'image/heart.png',
                         timeout: 4000,
                         onClick: function () {
@@ -77,8 +77,8 @@ window.onload = function () {
                     });
                 }
                 if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 3 == now.getDate()) {
-                    Push.create('記念日三日前です。', {
-                        body: '準備はできてる？',
+                    Push.create(res.data[i].annivarsary_title, {
+                        body: '３日前だよ！準備はできてる？',
                         icon: 'image/heart.png',
                         timeout: 4000,
                         onClick: function () {
@@ -88,8 +88,8 @@ window.onload = function () {
                     });
                 }
                 if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 5 == now.getDate()) {
-                    Push.create('記念日五日前です。', {
-                        body: '準備はできてる？',
+                    Push.create(res.data[i].annivarsary_title, {
+                        body: '５日前だよ！準備はできてる？',
                         icon: 'image/heart.png',
                         timeout: 4000,
                         onClick: function () {
@@ -99,8 +99,8 @@ window.onload = function () {
                     });
                 }
                 if (annive.getFullYear() == now.getFullYear() && annive.getMonth() == now.getMonth() && annive.getDate() - 7 == now.getDate()) {
-                    Push.create('記念日七日前です。', {
-                        body: '準備はできてる？',
+                    Push.create(res.data[i].annivarsary_title, {
+                        body: '７日前だよ！準備はできてる？',
                         icon: './IMG/white.png',
                         timeout: 4000,
                         onClick: function () {
