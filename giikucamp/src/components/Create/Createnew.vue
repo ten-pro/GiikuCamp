@@ -15,9 +15,37 @@
                 <p class="error2">＊ユーザー名が登録されていません</p>
                 <button class="createbtn2">Create new</button>
         </form>
-        <button class="logbtn2">login</button>
+        <a href="/"><button class="logbtn2">login</button></a>
     </div>
 </template>
+<script setup>
+import axios from 'axios'
+import { reactive } from "vue"
+let name=reactive("");
+let pass=reactive("");
+let display=reactive(["none"]);
+const login=()=>{
+    axios
+        .post('https://mp-class.chips.jp/calendar/main.php', {
+            user_name: name,
+            user_pass: pass,
+            login_user: ''
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (res) {
+            console.log(res.data);
+            if(res.data==false){
+                display[0]="block"
+            }else{
+                sessionStorage.setItem('id',res.data[0].id);
+                location.href="/home";
+            }
+        })
+}
+</script>
 <style>
 
 .backimg{

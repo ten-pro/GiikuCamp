@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a href="/Header"><img src="../IMG/plus.png" class="puls"></a>
+        <a href="/post"><img src="../IMG/plus.png" class="puls"></a>
     </div>
   </template>
   <script setup>

@@ -2,7 +2,7 @@
     <div>
         <Header />
         <div class="sheader">
-            <button class="backbutton" @click="notification">
+            <button class="backbutton" @click="sam">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-left"
                 viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -12,7 +12,7 @@
         </div>
         <div class="userspace">
             <div class="username">ユーザー名</div>
-            <input type="text" class="namebox" placeholder="placeholder">
+            <input type="text" class="namebox" placeholder="placeholder" v-model="userName[0]">
         </div>
         <div class="error">
             <div class="uerror">この名前はすでに使用されています。</div>
@@ -31,7 +31,6 @@
         <div class="times">
             <div class="timetxt">時間</div>
             <!--  -->
-<form action="">
             <select class="timese" size="1">
                 <option value="--">--</option>
                 <option value="0">0</option>
@@ -59,24 +58,24 @@
                 <option value="22">22</option>
                 <option value="23">23</option>
             </select>
-        </form>
             <!--  -->
         </div>
         <div class="checkday">
             <div class="checkn">日程</div>
-            <div class="checkma">
+            <div class="checkma" name="form1">
                 <label for="horns1" class="checkma">
-                    <input type="checkbox" id="horns1" value="1">1日前
+                    <input type="checkbox" id="horns1"  v-model="check1">1日前
                 </label>
                 <label for="horns2" class="checkma">
-                    <input type="checkbox" id="horns2" value="3">3日前
+                    <input type="checkbox" id="horns2" v-model="check3">3日前
                 </label>
                 <label for="horns3" class="checkma">
-                    <input type="checkbox" id="horns3" value="5">5日前
+                    <input type="checkbox" id="horns3" v-model="check5">5日前
                 </label>
                 <label for="horns4" class="checkma">
-                    <input type="checkbox" id="horns4" value="7">7日前
+                    <input type="checkbox" id="horns4"  v-model="check7">7日前
                 </label>
+               
             </div>
         </div>
         <LogoutButton />
@@ -84,26 +83,80 @@
     </div>
 </template>
 <script setup>
+import moment from "moment"
 import Header from "./Header.vue"
 import LogoutButton from "./setting/LogoutButton.vue"
-
-const notification =()=>{
-    Push.create('Hello Vue.js');
-    
-    const today = new Date();
-  const dayOfWeek = today.getDay() ;
-  console.log(today.getFullYear() + "/" +  (today.getMonth() + 1) + "/"+ today.getDate());
+import { reactive } from "vue"
+import axios from "axios"
+import { ref } from 'vue'
+let userName = reactive([""])
+let check1 = reactive(false)
+let check3 = reactive(false)
+let check5 = reactive(false)
+let check7 = reactive(false)
+let database = reactive(new Date("2022-12-18"))
+let now = reactive(new Date())
+window.onload=function(){
+    axios
+        .post('https://mp-class.chips.jp/calendar/main.php', {
+            user_id: 5,
+            get_user: ''
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(function (res) {
+            userName[0] = res.data[0].name;
+        })
 }
-const clickBtn1 =()=> {
-    const arr = [];
-    const chk1 = document.form1.chk1;
-    for (let i = 0; i < chk1.length; i++) {
-      if (chk1[i].checked) {//(chk1[i].checked === true)と同じ
-        arr.push(chk1[i].value);
-      }
+
+const sam = () => {
+    if (database.getFullYear() == now.getFullYear() && database.getMonth() == now.getMonth() && database.getDate() - 1 == now.getDate()) {
+        Push.create('記念日一日前です。', {
+            body: '準備はできてる？',
+            icon: 'image/heart.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
     }
-    document.getElementById("span1").textContent = arr;
-  }
+    if (database.getFullYear() == now.getFullYear() && database.getMonth() == now.getMonth() && database.getDate() - 3 == now.getDate()) {
+        Push.create('記念日三日前です。', {
+            body: '準備はできてる？',
+            icon: 'image/heart.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+    }
+    if (database.getFullYear() == now.getFullYear() && database.getMonth() == now.getMonth() && database.getDate() - 5 == now.getDate()) {
+        Push.create('記念日五日前です。', {
+            body: '準備はできてる？',
+            icon: 'image/heart.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+    }
+    if (database.getFullYear() == now.getFullYear() && database.getMonth() == now.getMonth() && database.getDate() - 7 == now.getDate()) {
+        Push.create('記念日七日前です。', {
+            body: '準備はできてる？',
+            icon: './IMG/white.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+    }
+}
 
 </script>
 <style scoped>
