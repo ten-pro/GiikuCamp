@@ -34,7 +34,7 @@ try {
     //update_userの引数がある時の処理
     if (isset($_POST['update_user']) == true) {
         $class = new Cal();
-        $data = $class->update_user($_POST['user_name'], $_POST['alert_day1'], $_POST['alert_day3'], $_POST['alert_day5'], $_POST['alert_day7'], $_POST['alert_time'], $_POST['alert'],$_POST['user_id']);
+        $data = $class->update_user($_POST['user_id'],$_POST['user_name'], $_POST['alert_date1'], $_POST['alert_date3'], $_POST['alert_date5'], $_POST['alert_date7'], $_POST['alert_time'], $_POST['alert']);
     }
 
 

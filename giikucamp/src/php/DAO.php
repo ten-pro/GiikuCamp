@@ -155,25 +155,25 @@ class Cal
     }
 
 
-    function update_user($user_id, $user_name, $alert_day1, $alert_day3, $alert_day5, $alert_day7, $alert_time,$alert)
+    function update_user($user_id, $user_name, $alert_date1, $alert_date3, $alert_date5, $alert_date7, $alert_time,$alert)
     {
 
         $pdo = $this->get_pdo();
-        $sql = 'UPDATE user_tbl SET user_name=?,alert_day1=?,alert_day3=?,alert_day5=?,alert_day7=?,alert_time=?,alert=? WHERE user_id = ?';
+        $sql = 'UPDATE user_tbl SET user_name=?,alert_date1=?,alert_date3=?,alert_date5=?,alert_date7=?,alert_time=?,alert=? WHERE user_id = ?';
 
         $ps = $pdo->prepare($sql);
         $ps->bindValue(1, $user_name, PDO::PARAM_STR);
-        $ps->bindValue(2, $alert_day1, PDO::PARAM_INT);
-        $ps->bindValue(3, $alert_day3, PDO::PARAM_INT);
-        $ps->bindValue(4, $alert_day5, PDO::PARAM_INT);
-        $ps->bindValue(5, $alert_day7, PDO::PARAM_INT);
+        $ps->bindValue(2, $alert_date1, PDO::PARAM_INT);
+        $ps->bindValue(3, $alert_date3, PDO::PARAM_INT);
+        $ps->bindValue(4, $alert_date5, PDO::PARAM_INT);
+        $ps->bindValue(5, $alert_date7, PDO::PARAM_INT);
         $ps->bindValue(6, $alert_time, PDO::PARAM_STR);
         $ps->bindValue(7, $alert, PDO::PARAM_INT);
         $ps->bindValue(8, $user_id, PDO::PARAM_INT);
         $ps->execute();
 
         $data = array();
-        array_push($data, array('id' => $user_id, 'name' => $user_name, 'alert_day1' => $alert_day1, 'alert_day3' => $alert_day3, 'alert_day5' => $alert_day5, 'alert_day7' => $alert_day7, 'alert_time' => $alert_time, 'alert' => $alert));
+        array_push($data, array('id' => $user_id, 'name' => $user_name, 'alert' => $alert, 'alert_day1' => $alert_date1, 'alert_day3' => $alert_date3, 'alert_day5' => $alert_date5, 'alert_day7' => $alert_date7, 'alert_time' => $alert_time));
 
         return $data;
     }
