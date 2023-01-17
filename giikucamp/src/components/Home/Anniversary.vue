@@ -45,6 +45,7 @@ import { reactive } from "vue"
 const now=reactive(new Date());
 let anniversarys = reactive([])
 let display = reactive([false])
+let trash = reactive([false])
 window.onload = function () {
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
@@ -225,4 +226,5 @@ const deletee =(annivarsary_id)=>{
 .null{
     height:100px;
 }
+
 </style>
