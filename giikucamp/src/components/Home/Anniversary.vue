@@ -1,4 +1,3 @@
-
 <template>
     <div>
         <!-- <div v-if=""></div> -->
@@ -49,6 +48,7 @@ let trash = reactive([false])
 window.onload = function () {
     axios
         .post('https://mp-class.chips.jp/calendar/main.php', {
+            // user_id: sessionStorage.getItem('user_id'),
             user_id: 1,
             get_list: ''
         }, {
@@ -61,7 +61,7 @@ window.onload = function () {
 
             for (let i = 0; i < res.data.length; i++) {
                 display[i] = false;
-                trash[i] = false;
+                    trash[i] = false;
                 let annive = new Date(res.data[i].annivarsary_day);
                 anniversarys[anniversarys.length] = {
                     title: res.data[i].annivarsary_title,
@@ -225,4 +225,5 @@ const deletee =(annivarsary_id)=>{
 .null{
     height:100px;
 }
+
 </style>
