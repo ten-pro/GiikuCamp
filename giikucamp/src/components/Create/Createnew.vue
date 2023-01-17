@@ -30,6 +30,7 @@ let state = reactive({
   pass1: "",
   pass2: ""
 })
+
 const create=()=>{
     if(state.pass1==""){
         swal("パスワードを入力してください","","error")
