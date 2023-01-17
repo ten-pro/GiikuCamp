@@ -8,5 +8,9 @@
     margin-left: 20px;
     margin-top: 20px;
   }
- 
+ .yazi:active {
+  -webkit-transform: translate(4px);
+  transform: translateY(4px);
+  border-bottom: none;
+ }
 </style>
