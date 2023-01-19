@@ -36,7 +36,7 @@
                     user_id:1,
                     annivarsary_day:date1,
                     annivarsary_title:title,
-                    annivarsary_detail:detail,
+                    annivarsary_detail:detail.text,
                     insert_annivarsary: ''
                 }, {
                     headers: {
@@ -122,4 +122,3 @@ input::placeholder{
     color:  black;
 }
 </style>
-
